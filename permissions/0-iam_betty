@@ -1,2 +1,11 @@
 #!/bin/bash
-su betty
+if [ ! -f "$permissions/$0-iam_betty"]; then 
+	echo "file '$permissions/$0-iam_betty' does not exist. "
+	exit 1
+fi 
+
+sudo chown betty "$permissions/$0-iam_betty"
+if [ $? -eq 0]; then
+	echo "ownership of '$permissions/$0-iam_betty' changed to 'betty'."
+else echo "failed to change onwership of '$permissions/$0-iam_betty'."
+fi
